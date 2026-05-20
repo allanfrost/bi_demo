@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply h-full bg-slate-100;
+}
+
 body {
-  @apply bg-slate-100 text-slate-950 antialiased;
+  @apply min-h-full bg-slate-100 text-slate-950 antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+button,
+a,
+input {
+  @apply touch-manipulation;
 }

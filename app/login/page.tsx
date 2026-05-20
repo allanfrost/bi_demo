@@ -11,7 +11,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#1e3a5f] px-4 py-10">
+    <main className="flex min-h-dvh items-center justify-center bg-[#1e3a5f] px-[max(1rem,env(safe-area-inset-left))] py-[max(2.5rem,env(safe-area-inset-top))]">
       <div className="flex w-full justify-center">
         <LoginForm />
       </div>

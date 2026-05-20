@@ -1,9 +1,34 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
   title: "BI Briefing",
-  description: "AI-drevet ledelsesbriefing til CFO og ledelse"
+  description: "AI-drevet ledelsesbriefing til CFO og ledelse",
+  applicationName: "BI Briefing",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    title: "BI Briefing",
+    statusBarStyle: "black-translucent"
+  },
+  formatDetection: {
+    telephone: false
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }]
+  }
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+  themeColor: "#1e3a5f"
 }
 
 export default function RootLayout({
@@ -13,10 +38,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="da">
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#1e3a5f" />
-      </head>
       <body>{children}</body>
     </html>
   )

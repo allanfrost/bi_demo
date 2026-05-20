@@ -20,8 +20,8 @@ export default function DashboardSessionView({
   revenue
 }: DashboardSessionViewProps) {
   return (
-    <main className="min-h-screen bg-slate-100">
-      <header className="bg-[#1e3a5f] px-6 py-5 text-white">
+    <main className="min-h-dvh bg-slate-100">
+      <header className="bg-[#1e3a5f] px-[max(1rem,env(safe-area-inset-left))] pb-5 pt-[max(1.25rem,env(safe-area-inset-top))] text-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
           <p className="text-xl font-semibold">BI Briefing</p>
           <form action="/api/logout" method="post" className="flex items-center gap-4">
@@ -38,7 +38,7 @@ export default function DashboardSessionView({
           </form>
         </div>
       </header>
-      <section className="mx-auto max-w-6xl space-y-6 px-6 py-8">
+      <section className="mx-auto max-w-6xl space-y-6 px-[max(1rem,env(safe-area-inset-left))] pb-[max(2rem,env(safe-area-inset-bottom))] pt-6 sm:pt-8">
         <AnomalyBanner kpis={kpis} />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {kpis.map((kpi) => (

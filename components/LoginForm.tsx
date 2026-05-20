@@ -48,10 +48,12 @@ export default function LoginForm() {
           <span className="text-sm font-medium text-slate-700">Email</span>
           <input
             type="email"
+            inputMode="email"
+            autoComplete="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-slate-950 outline-none transition focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20"
+            className="mt-1 h-12 w-full rounded-md border border-slate-300 px-3 text-base text-slate-950 outline-none transition focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20"
           />
         </label>
 
@@ -59,10 +61,11 @@ export default function LoginForm() {
           <span className="text-sm font-medium text-slate-700">Adgangskode</span>
           <input
             type="password"
+            autoComplete="current-password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-slate-950 outline-none transition focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20"
+            className="mt-1 h-12 w-full rounded-md border border-slate-300 px-3 text-base text-slate-950 outline-none transition focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20"
           />
         </label>
       </div>
@@ -76,7 +79,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 w-full rounded-md bg-[#1e3a5f] px-4 py-2.5 font-semibold text-white transition hover:bg-[#172d49] disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-6 h-12 w-full rounded-md bg-[#1e3a5f] px-4 font-semibold text-white transition hover:bg-[#172d49] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting ? "Logger ind..." : "Log ind"}
       </button>

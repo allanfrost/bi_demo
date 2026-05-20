@@ -147,6 +147,14 @@ Komponenter må ikke hardcode forretningsværdier. De skal modtage data som prop
 - Viser genereringstidspunkt
 - Har copy-to-clipboard knap
 
+### Smartphone PWA
+
+- Manifest er sat op til standalone installering på smartphone.
+- Appen har Apple Web App metadata og Apple touch icon.
+- Viewport bruger `viewport-fit=cover`, så appen kan udnytte safe-area på moderne telefoner.
+- Login og dashboard bruger dynamisk viewport-højde og safe-area padding.
+- Touch targets på login er optimeret til mobilbrug.
+
 ## AI Context
 
 Modellen får to typer input:
