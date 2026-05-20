@@ -15,6 +15,7 @@ Opret `.env.local` med:
 
 ```bash
 ANTHROPIC_API_KEY=sk-ant-your-key-here
+ANTHROPIC_MODEL=claude-sonnet-4-6
 ```
 
 ## Deploy

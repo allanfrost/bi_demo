@@ -6,6 +6,9 @@ Skriv i sammenhængende afsnit — ingen bullet points, ingen overskrifter.
 Max 3 afsnit. Vær konkret om tallene. Det vigtigste først.
 Afslut med én konkret anbefaling til ledelsen.`
 
+// The original spec model is unavailable for some API keys, so default to the account's current Sonnet model.
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6"
+
 function buildKpiMessage(kpis: KPI[]) {
   return `Skriv en ledelsesbriefing ud fra disse nøgletal:\n\n${kpis
     .map(
@@ -39,7 +42,7 @@ export async function POST(request: Request) {
       "anthropic-version": "2023-06-01"
     },
     body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
+      model: ANTHROPIC_MODEL,
       max_tokens: 700,
       stream: true,
       system: SYSTEM_PROMPT,
@@ -53,8 +56,16 @@ export async function POST(request: Request) {
   })
 
   if (!anthropicResponse.ok || !anthropicResponse.body) {
+    const errorBody = (await anthropicResponse.json().catch(() => null)) as {
+      error?: { message?: string }
+    } | null
+
     return Response.json(
-      { error: "Briefing kunne ikke genereres" },
+      {
+        error:
+          errorBody?.error?.message ??
+          "Briefing kunne ikke genereres"
+      },
       { status: anthropicResponse.status || 500 }
     )
   }
