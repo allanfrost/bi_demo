@@ -25,6 +25,7 @@ Produktets kernepitch:
 - Auth: Mock login med cookie-session
 - Data: Statisk mock data i `lib/mock-data.ts`
 - Deploy: Vercel via push til `main`
+- Vercel Function region: Dublin, Ireland (`dub1`)
 
 ## Arkitektur
 
@@ -224,6 +225,7 @@ Forventet status:
 - Commit løbende efter afsluttede ændringer
 - Push til `origin/main`
 - Vercel deployer fra `main`
+- Vercel Functions kører i Dublin, Ireland (`dub1`) via `vercel.json`
 
 ## Regler For Fremtidig Udvikling
 

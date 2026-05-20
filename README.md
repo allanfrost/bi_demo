@@ -20,4 +20,4 @@ ANTHROPIC_MODEL=claude-sonnet-4-6
 
 ## Deploy
 
-Push til `main`, så deployer Vercel automatisk fra GitHub.
+Push til `main`, så deployer Vercel automatisk fra GitHub. Vercel Functions er konfigureret til Dublin, Ireland (`dub1`) i `vercel.json`.
