@@ -8,7 +8,7 @@ export const DEMO_USERS = [
   {
     email: "demo@integrator.dk",
     password: "demo1234",
-    name: "Mads Eriksen",
+    name: "Allan Malmros Frost",
     title: "BI Consultant"
   }
 ]
