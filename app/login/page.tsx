@@ -12,10 +12,7 @@ export default async function LoginPage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#1e3a5f] px-4 py-10">
-      <div className="w-full">
-        <p className="mb-6 text-center text-3xl font-semibold text-white">
-          BI Briefing
-        </p>
+      <div className="flex w-full justify-center">
         <LoginForm />
       </div>
     </main>
