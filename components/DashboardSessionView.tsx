@@ -46,7 +46,7 @@ export default function DashboardSessionView({
           ))}
         </div>
         <RevenueChart data={revenue} />
-        <BriefingPanel kpis={kpis} />
+        <BriefingPanel kpis={kpis} userName={name} userTitle={title} />
       </section>
     </main>
   )

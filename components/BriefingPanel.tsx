@@ -6,9 +6,15 @@ import type { KPI } from "@/lib/mock-data"
 
 type BriefingPanelProps = {
   kpis: KPI[]
+  userName: string
+  userTitle: string
 }
 
-export default function BriefingPanel({ kpis }: BriefingPanelProps) {
+export default function BriefingPanel({
+  kpis,
+  userName,
+  userTitle
+}: BriefingPanelProps) {
   const [briefing, setBriefing] = useState("")
   const [generatedAt, setGeneratedAt] = useState<Date | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -23,7 +29,13 @@ export default function BriefingPanel({ kpis }: BriefingPanelProps) {
     const response = await fetch("/api/briefing", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kpis })
+      body: JSON.stringify({
+        kpis,
+        user: {
+          name: userName,
+          title: userTitle
+        }
+      })
     })
 
     if (!response.ok || !response.body) {

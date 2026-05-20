@@ -1,5 +1,10 @@
 import type { KPI } from "@/lib/mock-data"
 
+type BriefingUser = {
+  name: string
+  title: string
+}
+
 const SYSTEM_PROMPT = `Du er en erfaren BI-analytiker der skriver ledelsesrapporter for danske virksomheder.
 Du modtager nøgletal og skriver en kort, præcis og professionel ledelsesbriefing på dansk.
 Skriv i sammenhængende afsnit — ingen bullet points, ingen overskrifter.
@@ -9,8 +14,12 @@ Afslut med én konkret anbefaling til ledelsen.`
 // The original spec model is unavailable for some API keys, so default to the account's current Sonnet model.
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6"
 
-function buildKpiMessage(kpis: KPI[]) {
-  return `Skriv en ledelsesbriefing ud fra disse nøgletal:\n\n${kpis
+function buildKpiMessage(kpis: KPI[], user?: BriefingUser) {
+  const userContext = user
+    ? `Briefingen genereres for ${user.name}, ${user.title}.\n\n`
+    : ""
+
+  return `${userContext}Skriv en ledelsesbriefing ud fra disse nøgletal:\n\n${kpis
     .map(
       (kpi) =>
         `${kpi.label}: ${kpi.formatted}, trend ${kpi.trendLabel}, status ${kpi.status}. ${kpi.description}`
@@ -28,7 +37,10 @@ export async function POST(request: Request) {
     )
   }
 
-  const { kpis } = (await request.json()) as { kpis?: KPI[] }
+  const { kpis, user } = (await request.json()) as {
+    kpis?: KPI[]
+    user?: BriefingUser
+  }
 
   if (!kpis?.length) {
     return Response.json({ error: "Nøgletal mangler" }, { status: 400 })
@@ -49,7 +61,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "user",
-          content: buildKpiMessage(kpis)
+          content: buildKpiMessage(kpis, user)
         }
       ]
     })
